@@ -1,6 +1,9 @@
 # Data files
 data/
 
+# Exported fig files (pngs are ok, full figs aren't)
+exports/fig
+
 # Matlab gitignore
 # Windows default autosave extension
 *.asv
