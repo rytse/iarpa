@@ -3,7 +3,10 @@
 # Set up conda env
 conda create -n pins
 conda activate pins
-conda install -c conda-forge awscli 
+conda install -c conda-forge awscli
+
+# Set up awscli
+aws configure
 
 # Set up local dir structure
 mkdir data
