@@ -17,7 +17,7 @@ bw = stop_f - start_f;
 t = 0:1/fs:elapsed_time;
 t(end) = [];
 
-bb_phase = 2 * pi * (bw / elapsed_time .* t) .* t;
+bb_phase = pi * (bw / elapsed_time .* t) .* t;
 % plot(bb_phase)
 % figure
 
