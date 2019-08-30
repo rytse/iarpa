@@ -19,6 +19,9 @@ end
 
 % Plot spectrogram
 imagesc(t / 60, f / 1e3, mag2db(p .^ 2));
+
+% waterfall(m, FS / DECIM, WSIZE);
+
 xlabel('Time (minutes)')
 ylabel('Frequency (kHz)')
 set(gca,'YDir','normal')
