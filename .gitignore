@@ -3,6 +3,10 @@
 # Data files
 data/
 
+# output dir
+bin/
+.vscode/
+
 # Exported fig files (pngs are ok, full figs aren't)
 exports/fig
 
