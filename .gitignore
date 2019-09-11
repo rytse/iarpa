@@ -6,6 +6,7 @@ data/
 # output dir
 bin/
 .vscode/
+output/
 
 # Exported fig files (pngs are ok, full figs aren't)
 exports/fig
