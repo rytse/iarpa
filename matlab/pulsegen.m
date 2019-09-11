@@ -6,12 +6,13 @@ function [pulse] = pulsegen(freq, fs, baud, parity)
     % or even numbered pulse in the sweep
     spread = pcode(parity + 1,:);
     
-    ts = linspace(0, length(spread) / baud, fs * length(spread) / baud);
+    ts = linspace(0, length(spread) / baud, ceil(fs * length(spread) / baud));
     carrier = exp(2 * pi * 1.0j * freq * ts);
     
     % Upsample the pulse by sample-and-hold
-    spread = upsample(spread, fs / baud);
-    spread = filter(ones(fs / baud, 1), 1, spread);
+    [p, q] = rat(fs / baud);
+    spread = resample(spread, p, q);
+    spread = filter(ones(round(fs / baud), 1), 1, spread);
     
     pulse = spread .* carrier;
 end
