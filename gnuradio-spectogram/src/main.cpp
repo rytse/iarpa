@@ -5,6 +5,9 @@
 #include <string>
 #include <iostream>  
 
+#include <gnuradio/top_block.h>
+#include <gnuradio/blocks/file_source.h>
+
 using namespace std;
 
 int main(int argc, char const *argv[])
@@ -19,6 +22,15 @@ int main(int argc, char const *argv[])
     } else {
         cout << "No filename provided. Exiting" << endl;
     }
+
+    // Create the top block of the flowgraph
+    gr::top_block_sptr topBlock = gr::make_top_block("default");
+
+    gr::blocks::file_source::sptr fileSource = gr::blocks::file_source::make(sizeof(float), file);
+
+    topBlock->connect(fileSource);
+
+    topBlock->run();
 
     return 0;
 }
