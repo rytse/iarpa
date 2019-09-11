@@ -5,14 +5,20 @@ function [f] = waterfall(cin, fs, wsize)
 
 ELAPSED_TIME = length(cin) / fs;
 
-% win = nuttallwin(wsize);
-win = ones(wsize, 1);
+% win = hanning(wsize);
+win = nuttallwin(wsize);
+% win = ones(wsize, 1);
 f = zeros(length(win),floor(length(cin)/length(win)/2), 'single');
 jj = 1;
 
 for ii = 1 : length(win) / 2 : length(cin) - length(win)
-  f(:, jj) = cast(mag2db(abs(fft(cin(ii : ii + length(win) - 1) .* win))), 'single');
-  jj = jj + 1;
+    rep = abs(fft(cin(ii : ii + length(win) - 1) .* win)) .^ 2;
+    
+    rep = rep / median(rep);
+    rep = mag2db(rep);
+    f(:, jj) = cast(rep, 'single');
+%   f(:, jj) = cast(mag2db(abs(fft(cin(ii : ii + length(win) - 1) .* win)) .^ 2), 'single');
+    jj = jj + 1;
 end
 
 [k,m] = size(f);
