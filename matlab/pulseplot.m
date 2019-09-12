@@ -12,7 +12,7 @@ fclose(fid);
 iq = deinterleve(iq);
 ispec = fft(iq);
 
-pulse = pulsegen(2e6, FS, BAUD, 0);
+pulse = pulsegen(2e6 * .95, FS, BAUD, 0);
 filt = conj(fliplr(pulse));
 filt = [filt zeros(1, length(iq)-length(filt))];
 fspec = fft(filt);
